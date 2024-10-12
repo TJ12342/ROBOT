@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index</title>
+  <link rel="stylesheet" href="/static/styles/nav.css">
+  <link rel="stylesheet" href="/static/styles/index.css">
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="/static/images/logo.jpeg" alt="logo">
+    </div>
+    <div class="menu">
+      <nav>
+        <span class="nav-item" onclick="toPage('/record')" id="lang-RECORD"></span>
+      </nav>
+      <div class="header-user">
+        <span id="username"></span>
+        <span class="icon" id="setting">
+          <img src="/static/images/setting.png" alt="setting" onclick="showOption()">
+          <div class="options">
+            <span class="option-title" id="lang-SIZE"></span>
+            <input class="number-inp" type="number" min="12" max="30" id="size-option">
+            <span class="option-title" id="lang-COLOR"></span>
+            <input class="color-inp" type="color" id="color-option">
+            <span class="option-title" id="lang-BTN_COLOR"></span>
+            <input class="color-inp" type="color" id="btn-color-option">
+            <span class="option-title" id="lang-BTN_FONT_COLOR"></span>
+            <input class="color-inp" type="color" id="btn-font-color-option">
+          </div>
+        </span>
+        <span class="icon" id="language">
+          <img src="/static/images/lang.png" alt="lang" onclick="showLang()">
+          <div class="lang">
+            <span class="lang-item" onclick="changeLanguage('zh', indexLangObj)">中文</span>
+            <span class="lang-item" onclick="changeLanguage('en', indexLangObj)">English</span>
+          </div>
+        </span>
+        <span class="icon" id="logout">
+          <img src="/static/images/logout.png" alt="logout" onclick="logout()">
+        </span>
+      </div>
+    </div>
+    <div class="login-view">
+      <span onclick="toPage('/user/login')">Login</span>
+    </div>
+    </div>
+  </header>
+  <main>
+    <div class="control">
+      <div class="control-item">
+        <h1 class="hello-title"></h1>
+        <div class="move-group">
+          <span class="move-btn up" onclick="sendCommand(20)">▲</span>
+          <div class="group-center">
+            <span class="move-btn left" onclick="sendCommand(22)">◀</span>
+            <span class="move-btn" onclick="sendCommand(24)" id="lang-STOP">stop</span>
+            <span class="move-btn right" onclick="sendCommand(23)">▶</span>
+          </div>
+          <span class="move-btn down" onclick="sendCommand(21)">▼</span>
+        </div>
+      </div>
+      <div class="control-item">
+        <h2 class="control-title" id="lang-HEAD_MOVEMENT">头部动作</h2>
+        <div class="control-group">
+          <span class="control-btn" onclick="sendCommand(26)" id="lang-LOOK_UP">抬头</span>
+          <span class="control-btn" onclick="sendCommand(29)" id="lang-LOOK_DOWN">低头</span>
+          <span class="control-btn" onclick="sendCommand(28)" id="lang-LOOK_LEFT">左扭</span>
+          <span class="control-btn" onclick="sendCommand(30)" id="lang-LOOK_RIGHT">右扭</span>
+        </div>
+        <h2 class="control-title" id="lang-HAND_MOVEMENT">手部动作</h2>
+        <div class="control-group">
+          <span class="control-btn" onclick="sendCommand(25)" id="lang-HAND_SHAKE">握手</span>
+          <span class="control-btn" onclick="sendCommand(27)" id="lang-WAVE">招手</span>
+        </div>
+        <h2 class="control-title" id="lang-BODY_MOVEMENT">身体动作</h2>
+        <div class="control-group">
+          <span class="control-btn" onclick="sendCommand(31)" id="lang-LEFT_TILT">左倾</span>
+          <span class="control-btn" onclick="sendCommand(33)" id="lang-RIGHT_TILT">右倾</span>
+          <span class="control-btn" onclick="sendCommand(32)" id="lang-RAISE">抬升</span>
+          <span class="control-btn" onclick="sendCommand(39)" id="lang-SERVICE">避障</span>
+          <span class="control-btn" onclick="sendCommand(35)" id="lang-SIT_DOWN">下蹲</span>
+          <span class="control-btn" onclick="sendCommand(37)" id="lang-SIT">坐下</span>
+          <span class="control-btn" onclick="sendCommand(38)" id="lang-DANCE">跳舞</span>
+          <span class="control-btn" onclick="sendCommand(26)" id="lang-RESET">复位</span>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+<script src="/static/js/robot.js"></script>
+<script src="/static/js/nav.js"></script>
+<script>
+  langChange(indexLangObj);
+
+
+  function changeBtnStyle() {
+    let btnColor = localStorage.getItem('btn_color');
+    let btnFontColor = localStorage.getItem('btn_font_color');
+    document.querySelectorAll('.move-btn').forEach(
+      btn => {
+        btn.style.backgroundColor = btnColor;
+        btn.style.color = btnFontColor;
+      }
+    )
+    document.querySelectorAll('.control-btn').forEach(
+      btn => {
+        btn.style.backgroundColor = btnColor;
+        btn.style.color = btnFontColor;
+      }
+    )
+  }
+
+  changeBtnStyle()
+</script>
+
+</html>

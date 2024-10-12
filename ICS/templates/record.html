@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Record</title>
+  <link rel="stylesheet" href="/static/styles/nav.css">
+  <link rel="stylesheet" href="/static/styles/record.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <!-- <script src="https://cdn.staticfile.net/jquery/1.10.2/jquery.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="/static/images/logo.jpeg" alt="logo">
+    </div>
+    <div class="menu">
+      <nav>
+        <span class="nav-item" onclick="toPage('/record')" id="lang-RECORD"></span>
+      </nav>
+      <div class="header-user">
+        <span id="username"></span>
+        <span class="icon" id="setting">
+          <img src="/static/images/setting.png" alt="setting" onclick="showOption()">
+          <div class="options">
+            <span class="option-title" id="lang-SIZE"></span>
+            <input class="number-inp" type="number" min="12" max="30" id="size-option">
+            <span class="option-title" id="lang-COLOR"></span>
+            <input class="color-inp" type="color" id="color-option">
+            <span class="option-title" id="lang-BTN_COLOR"></span>
+            <input class="color-inp" type="color" id="btn-color-option">
+            <span class="option-title" id="lang-BTN_FONT_COLOR"></span>
+            <input class="color-inp" type="color" id="btn-font-color-option">
+          </div>
+        </span>
+        <span class="icon" id="language">
+          <img src="/static/images/lang.png" alt="lang" onclick="showLang()">
+          <div class="lang">
+            <span class="lang-item" onclick="changeLanguage('zh', recordLangObj)">中文</span>
+            <span class="lang-item" onclick="changeLanguage('en', recordLangObj)">English</span>
+          </div>
+        </span>
+        <span class="icon" id="logout">
+          <img src="/static/images/logout.png" alt="logout" onclick="logout()">
+        </span>
+      </div>
+    </div>
+    <div class="login-view">
+      <span onclick="toPage('/user/login')">Login</span>
+    </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1 class="heading-lv1" id="lang-RECORD_TITLE">Record</h1>
+    <div class="table-app" id="product-table-app">
+      <div class="table-handler">
+        <div class="table-handler-dropdown-cell">
+          <div class="dropdown">
+            <h3 class="dropdown-heading">
+              <i class="fas fa-filter"></i> <span id="lang-SELECT_USER">User</span>
+            </h3>
+            <select class="select js-handle-table js-filter" id="filter-User">
+              <option value="all">All</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-handler-dropdown-cell">
+          <div class="dropdown">
+            <h3 class="dropdown-heading">
+              <i class="fas fa-sort-amount-up-alt"></i> <span id="lang-SELECT_SORT">Sort by</span>
+            </h3>
+            <select class="select js-handle-table" id="sort-by">
+              <option value="none">-</option>
+              <option value="created_at">Created at</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-handler-dropdown-cell">
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table class="table" id="table">
+          <thead>
+            <tr class="table-head">
+              <th class="table-cell align-left" id="lang-TABLE_ID">ID</th>
+              <th class="table-cell align-left" id="lang-TABLE_USER">User</th>
+              <th class="table-cell align-left" id="lang-TABLE_GENDER">Gender</th>
+              <th class="table-cell align-left" id="lang-TABLE_DEPARTMENT">Department</th>
+              <th class="table-cell align-left" id="lang-TABLE_MAJOR">Major</th>
+              <th class="table-cell align-left" id="lang-TABLE_CLASS">Class</th>
+              <th class="table-cell align-left" id="lang-TABLE_FACE_IMAGE">Face Image</th>
+              <th class="table-cell align-right" id="lang-TABLE_CREATED_AT">Created at</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="no-results hidden" id="no-results">
+          <p class="no-results-message">No results found.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="/static/js/moment.min.js"></script>
+<script src="/static/js/nav.js"></script>
+<script src="/static/js/record.js"></script>
+<script>
+  let recordLangObj = {
+    "zh": {
+      RECORD_TITLE: "记录",
+      SELECT_USER: "用户",
+      SELECT_SORT: "排序",
+      TABLE_ID: "序号",
+      TABLE_USER: "用户",
+      TABLE_GENDER: "性别",
+      TABLE_DEPARTMENT: "部门",
+      TABLE_MAJOR: "专业",
+      TABLE_CLASS: "班级",
+      TABLE_FACE_IMAGE: "人脸图片",
+      TABLE_CREATED_AT: "创建时间"
+    },
+    "en": {
+      RECORD_TITLE: "Record",
+      SELECT_USER: "User",
+      SELECT_SORT: "Sort by",
+      TABLE_ID: "ID",
+      TABLE_USER: "User",
+      TABLE_GENDER: "Gender",
+      TABLE_DEPARTMENT: "Department",
+      TABLE_MAJOR: "Major",
+      TABLE_CLASS: "Class",
+      TABLE_FACE_IMAGE: "Face Image",
+      TABLE_CREATED_AT: "Created at"
+    }
+  }
+  langChange(recordLangObj);
+</script>
+
+</html>
