@@ -82,16 +82,16 @@
 
 <body>
     <div class="register">
-        <h2>登录</h2>
+        <h2>登录/Login</h2>
         <div class="register_form">
-            <span>用户名：</span>
-            <input type="text" id="username" placeholder="请输入用户名">
+            <span>用户名/Username：</span>
+            <input type="text" id="username" placeholder="please enter your username">
             <br>
-            <span>密码：</span>
-            <input type="password" id="password" placeholder="请输入密码">
+            <span>密码/Password：</span>
+            <input type="password" id="password" placeholder="please enter the password">
         </div>
-        <button class="register_btn" onclick="login()">登录</button>
-        <a class="to-link" href="/user/register">前往注册</a>
+        <button class="register_btn" onclick="login()">登录/Login</button>
+        <a class="to-link" href="/user/register">前往注册/Skip to register</a>
         <div class="error" id="error"></div>
     </div>
 
@@ -102,7 +102,7 @@
             var error = document.getElementById('error');
 
             if (username === '' || password === '') {
-                error.textContent = '用户名或密码不能为空';
+                error.textContent = '用户名或密码不能为空/User name or password cannot be empty';
                 return
             }
 
@@ -124,17 +124,17 @@
 
                 if (response.ok) {
                     let data = await response.json();
-                    alert('登录成功');
+                    alert('登录成功/Login successful');
                     console.log(data);
                     localStorage.setItem('user_data', JSON.stringify(data.data))
                     // 登录后跳转到主页
                     window.location.href = '/index';
                 } else {
-                    throw new Error('登录失败');
+                    throw new Error('登录失败/Login failed');
                 }
             } catch (error) {
                 console.error('Fetch 操作出现问题:', error);
-                error.textContent = '登录失败，请重试';
+                error.textContent = '登录失败，请重试/Login failed, please try again';
             }
         }
     </script>

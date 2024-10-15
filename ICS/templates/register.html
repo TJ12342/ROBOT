@@ -71,18 +71,18 @@
 
 <body>
     <div class="register">
-        <h2>注册</h2>
+        <h2>注册/Register</h2>
         <div class="register_form">
-            <span>用户名：</span>
-            <input type="text" id="username" placeholder="请输入用户名">
+            <span>用户名/Username：</span>
+            <input type="text" id="username" placeholder="please enter your username">
             <br>
-            <span>密码：</span>
-            <input type="password" id="password" placeholder="请输入密码">
+            <span>密码/Password：</span>
+            <input type="password" id="password" placeholder="please enter the password">
             <br>
-            <span>确认密码：</span>
-            <input type="password" id="confirmPassword" placeholder="请再次输入密码">
+            <span>确认密码/Confirm password：</span>
+            <input type="password" id="confirmPassword" placeholder="Please enter your password again">
         </div>
-        <button class="register_btn" onclick="register()">注册</button>
+        <button class="register_btn" onclick="register()">注册/Register</button>
         <div class="error" id="error"></div>
     </div>
 
@@ -95,13 +95,13 @@
 
             // 检查用户名和密码是否符合要求
             if (username.length < 4 || password.length < 6) {
-                error.textContent = '用户名长度至少为 4 个字符，密码长度至少为 6 个字符';
+                error.textContent = '用户名长度至少为 4 个字符，密码长度至少为 6 个字符/The user name must contain at least 4 characters, and the password must contain at least 6 characters';
                 return;
             }
 
             // 检查密码和确认密码是否匹配
             if (password !== confirmPassword) {
-                error.textContent = '两次输入的密码不一致';
+                error.textContent = '两次输入的密码不一致/The two passwords are different';
                 return;
             }
 
@@ -123,14 +123,14 @@
 
                 if (response.ok) {
                     let data = await response.json();
-                    alert('注册成功');
+                    alert('注册成功/Registration successful');
                     window.location.href = '/user/login';
                 } else {
-                    throw new Error('注册失败');
+                    throw new Error('注册失败/Registration failed');
                 }
             } catch (error) {
                 console.error('Fetch 操作出现问题:', error);
-                error.textContent = '注册失败，请重试';
+                error.textContent = '注册失败，请重试/The registration failed, please try again';
             }
         }
     </script>

@@ -12,7 +12,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 SERVER_IP = '192.168.4.1'  # 服务器IP
 SEND_PORT = 10001  # 发送端口
 LOCAL_PORT = 10000  # 接收端口
-BUFFER_SIZE = 1024 * 1024  # 1 MB的缓冲区
+BUFFER_SIZE = 1024 * 1024 * 4  # 1 MB的缓冲区
 HTTP_PORT = 8080  # 本地HTTP服务器端口
 
 # 用于保存JPEG文件的目录
@@ -99,12 +99,13 @@ def display_video():
 
                 # 保存图像
                 if save_image_flag.is_set():
+                    print("Save flag detected, saving image...")
                     timestamp = time.strftime("%Y%m%d_%H%M%S")
                     image_path = os.path.join(SAVE_DIR, f"image_{timestamp}.jpg")
                     image.save(image_path)
                     print(f"Image saved to {image_path}")
                     save_image_flag.clear()  # 清除标志
-
+            
             except Exception as e:
                 print(f"Error displaying image: {e}")
         else:
