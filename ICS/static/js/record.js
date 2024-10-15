@@ -1,5 +1,5 @@
 $(function () {
-  let url = "http://localhost:5000/face/list"
+  let url = "http://123.57.208.175:8081/face/list"
   new ProductTableApp(
     $('#product-table-app'),
     url,
