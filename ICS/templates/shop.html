@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="/static/styles/nav.css">
+    <link href="/static/styles/home.css" rel="stylesheet" type="text/css" />
+    <link href="/static/styles/shop.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="/static/images/logo.jpeg" alt="logo">
+        </div>
+        <div class="menu">
+            <nav>
+                <span class="nav-item" onclick="toPage('/home')" id="lang-HOME"></span>
+                <span class="nav-item" onclick="toPage('/record')" id="lang-RECORD"></span>
+                <span class="nav-item" onclick="toPage('/shop')" id="lang-SHOP"></span>
+                <span class="nav-item" onclick="toPage('/cart')" id="lang-CART"></span>
+                <span class="nav-item" onclick="toPage('/order')" id="lang-ORDER"></span>
+            </nav>
+            <div class="header-user">
+                <span id="username"></span>
+                <span class="icon" id="setting">
+                    <img src="/static/images/setting.png" alt="setting" onclick="showOption()">
+                    <div class="options">
+                        <span class="option-title" id="lang-SIZE"></span>
+                        <input class="number-inp" type="number" min="12" max="30" id="size-option">
+                        <span class="option-title" id="lang-COLOR"></span>
+                        <input class="color-inp" type="color" id="color-option">
+                        <span class="option-title" id="lang-BTN_COLOR"></span>
+                        <input class="color-inp" type="color" id="btn-color-option">
+                        <span class="option-title" id="lang-BTN_FONT_COLOR"></span>
+                        <input class="color-inp" type="color" id="btn-font-color-option">
+                    </div>
+                </span>
+                <span class="icon" id="language">
+                    <img src="/static/images/lang.png" alt="lang" onclick="showLang()">
+                    <div class="lang">
+                        <span class="lang-item" onclick="changeLanguage('zh', shopLangObj)">中文</span>
+                        <span class="lang-item" onclick="changeLanguage('en', shopLangObj)">English</span>
+                    </div>
+                </span>
+                <span class="icon" id="logout">
+                    <img src="/static/images/logout.png" alt="logout" onclick="logout()">
+                </span>
+            </div>
+        </div>
+        <div class="login-view">
+            <span onclick="toPage('/user/login')">Login</span>
+        </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="menu-section">
+            <h2 align="center">Clothes</h2>
+            <div class="menu">
+
+                <div class="menu-item" data-price="1288.00">
+                    <img src="https://p0.meituan.net/dpmerchantpic/674527e1c2c01557fee8a44aa87c06c2261976.jpg"
+                        alt="clothes1">
+                    <h4>Suit</h4>
+                    <p class="price">¥ 1288.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('clothes1')">-</button>
+                        <span id="clothes1-quantity">0</span>
+                        <button onclick="increaseQuantity('clothes1')">+</button>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-price="688.00">
+                    <img src="https://img1.baidu.com/it/u=2938283431,279642382&fm=253&fmt=auto?w=800&h=1137"
+                        height="750" alt="clothes2">
+                    <h4>Dress</h4>
+                    <p class="price">¥ 688.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('clothes2')">-</button>
+                        <span id="clothes2-quantity">0</span>
+                        <button onclick="increaseQuantity('clothes2')">+</button>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-price="288.00">
+                    <img src="https://ts1.cn.mm.bing.net/th/id/R-C.269a6431afb16f9dae835ff51d03d76e?rik=xsZDIOLCWGBcng&riu=http%3a%2f%2fimg1.cfw.cn%2feditors%2fattached%2fimage%2f20200907%2f202097151313114.jpeg&ehk=0zSqqKaBBNqtWcFwtZdPhxdCLqTph785xfN8OK%2fn3c8%3d&risl=&pid=ImgRaw&r=0"
+                        height="750" alt="clothes3">
+                    <h4>Sweater</h4>
+                    <p class="price">¥ 288.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('clothes3')">-</button>
+                        <span id="clothes3-quantity">0</span>
+                        <button onclick="increaseQuantity('clothes3')">+</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-price="268.00">
+                    <img src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2020%2F1011%2F5e1ab598j00qi02rc004xd200rs015og008k00cu.jpg&thumbnail=660x2147483647&quality=80&type=jpg"
+                        height="750" alt="clothes4">
+                    <h4>Hoodie</h4>
+                    <p class="price">¥ 268.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('clothes4')">-</button>
+                        <span id="clothes4-quantity">0</span>
+                        <button onclick="increaseQuantity('clothes4')">+</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-price="888.00">
+                    <img src="https://img10.360buyimg.com/imgzone/jfs/t1/134097/26/14148/593116/5f994024Ea3f5b09b/ed0036771205ad99.jpg"
+                        height="750" alt="clothes5">
+                    <h4>Down Jackets</h4>
+                    <p class="price">¥ 888.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('clothes5')">-</button>
+                        <span id="clothes5-quantity">0</span>
+                        <button onclick="increaseQuantity('clothes5')">+</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-price="288.00">
+                    <img src="https://cbu01.alicdn.com/img/ibank/2016/610/433/3216334016_1451018438.jpg" height="750"
+                        alt="clothes6">
+                    <h4>T-shirt</h4>
+                    <p class="price">¥ 288.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('clothes6')">-</button>
+                        <span id="clothes6-quantity">0</span>
+                        <button onclick="increaseQuantity('clothes6')">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2 align="center">Furniture</h2>
+            <div class="menu">
+
+                <div class="menu-item" data-price="168.00">
+                    <img src="https://pic.rmb.bdstatic.com/bjh/news/90b7518cd254fb0226fa8a8bf45806737415.jpeg"
+                        height="550" alt="furniture1">
+                    <h4>Chair</h4>
+                    <p class="price">¥ 168.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('furniture1')">-</button>
+                        <span id="furniture1-quantity">0</span>
+                        <button onclick="increaseQuantity('furniture1')">+</button>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-price="488.00">
+                    <img src="https://ts1.cn.mm.bing.net/th/id/R-C.2a775fba02b4c70edde85173a9ce98f3?rik=4vrNB2bf1byktw&riu=http%3a%2f%2fwww.zhongguofeng.com%2fuploads%2fallimg%2f170525%2f8-1F5251553320-L.jpg&ehk=hzX8vGkcVA8ktZMCK%2biTlaTe2kOo7RHT7Ayv2vL1C%2fY%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
+                        height="550" alt="furniture2">
+                    <h4>Cabinet</h4>
+                    <p class="price">¥ 488.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('furniture2')">-</button>
+                        <span id="furniture2-quantity">0</span>
+                        <button onclick="increaseQuantity('furniture2')">+</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-price="3888.00">
+                    <img src="https://img.zcool.cn/community/01c3e45ac9736fa8012062e34fdced.JPG@1280w_1l_2o_100sh.jpg"
+                        height="550" alt="furniture3">
+                    <h4>Sofa</h4>
+                    <p class="price">¥ 3888.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('furniture3')">-</button>
+                        <span id="furniture3-quantity">0</span>
+                        <button onclick="increaseQuantity('furniture3')">+</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-price="298.00">
+                    <img src="https://ts1.cn.mm.bing.net/th/id/R-C.d498a5b69c94d51c11af55607931049d?rik=p2aEW%2feW5wu6WA&riu=http%3a%2f%2fimages.quanjing.com%2fChineseview011%2fhigh%2f316-0817.jpg&ehk=zUjNU19xUgvYbe3F8qFbw0l0Lsvh6Vm2ShCloJZwS3M%3d&risl=&pid=ImgRaw&r=0"
+                        height="550" alt="furniture4">
+                    <h4>Table</h4>
+                    <p class="price">¥ 298.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('furniture4')">-</button>
+                        <span id="furniture4-quantity">0</span>
+                        <button onclick="increaseQuantity('furniture4')">+</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-price="218.00">
+                    <img src="https://cbu01.alicdn.com/img/ibank/2018/660/227/9343722066_1642247380.jpg" height="550"
+                        alt="furniture5">
+                    <h4>Carpet</h4>
+                    <p class="price">¥ 218.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('furniture5')">-</button>
+                        <span id="furniture5-quantity">0</span>
+                        <button onclick="increaseQuantity('furniture5')">+</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-price="268.00">
+                    <img src="https://ts1.cn.mm.bing.net/th/id/R-C.4fd0c54442232db4093c3b9371837e0c?rik=nXH7M4ne6dptfw&riu=http%3a%2f%2fm.360buyimg.com%2fn12%2fjfs%2ft670%2f219%2f729165638%2f252416%2fc747e832%2f547ff949N410ef87a.jpg!q70.jpg&ehk=f4Li8CwInVjpcRa9Ceu9zpbfSdn2pyKAaWyOS6pVfYM%3d&risl=&pid=ImgRaw&r=0"
+                        height="550" alt="furniture6">
+                    <h4>Bookshelf</h4>
+                    <p class="price">¥ 268.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('furniture6')">-</button>
+                        <span id="furniture6-quantity">0</span>
+                        <button onclick="increaseQuantity('furniture6')">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2 align="center">Device</h2>
+            <div class="menu">
+
+                <div class="menu-item" data-price="2888.00">
+                    <img src="https://img0.pconline.com.cn/pconline/1910/11/12962772_11_thumb.jpg" height="350"
+                        alt="device1">
+                    <h4>Camrea</h4>
+                    <p class="price">¥ 2888.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('device1')">-</button>
+                        <span id="device1-quantity">0</span>
+                        <button onclick="increaseQuantity('device1')">+</button>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-price="8888.88">
+                    <img src="https://pic.52112.com/180420/180420_147/cdOJrJCPhn_small.jpg" height="350" alt="device2">
+                    <h4>Laptop</h4>
+                    <p class="price">¥ 8888.88</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('device2')">-</button>
+                        <span id="device2-quantity">0</span>
+                        <button onclick="increaseQuantity('device2')">+</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-price="16888.00">
+                    <img src="https://ugc-img.ifengimg.com/img/2022/10/5/8JqOF3Vp7MP/03ebce72-0f14-4387-9eed-ecf2fd03ce60_w1218_h812.jpeg"
+                        height="350" alt="device3">
+                    <h4>GeForce Graphics Card RTX 4090 </h4>
+                    <p class="price">¥ 16888.00</p>
+                    <div class="quantity-controls">
+                        <button onclick="decreaseQuantity('device3')">-</button>
+                        <span id="device3-quantity">0</span>
+                        <button onclick="increaseQuantity('device3')">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-summary">
+            <p>
+                <span id="lang-TOTAL">Total: </span>
+                <span id="id-total-price">¥0.00</span>
+            </p>
+            <p><span id="lang-DISCOUNT">Discount: </span><span id="id-discount">¥0.00</span></p>
+            <p><span id="lang-PAYFOR">Pay for: </span><span id="id-final-price">¥0.00</span></p>
+            <button id="lang-ORDER_BUTTON" onclick="placeOrder()">Place Order</button>
+        </div>
+
+    </div>
+    <footer class="main-footer">
+
+        <h2 class="footer__title">Contact</h2>
+        <p class="footer__txt">Phone : 0124-64XXXX </p>
+
+        </div>
+
+        <p class="copy">© 2024.| All Rights Reserved | Design by N.L.X</p>
+    </footer>
+
+
+
+
+
+</body>
+<script src="/static/js/nav.js"></script>
+<script src="/static/js/shop.js"></script>
+<script>
+    let shopLangObj = {
+        'zh': {
+            'TOTAL': '总价: ',
+            'DISCOUNT': '折扣: ',
+            'PAYFOR': '应付: ',
+            'ORDER_BUTTON': '下单'
+        },
+        'en': {
+            'TOTAL': 'Total: ',
+            'DISCOUNT': 'Discount: ',
+            'PAYFOR': 'Pay for: ',
+            'ORDER_BUTTON': 'Place Order'
+        }
+    };
+
+    langChange(shopLangObj);
+</script>
+
+</html>

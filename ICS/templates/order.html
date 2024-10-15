@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="10">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link href="/static/styles/order.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/static/styles/nav.css">
+    <link rel="stylesheet" href="/static/styles/home.css" />
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="/static/images/logo.jpeg" alt="logo">
+        </div>
+        <div class="menu">
+            <nav>
+                <span class="nav-item" onclick="toPage('/home')" id="lang-HOME"></span>
+                <span class="nav-item" onclick="toPage('/record')" id="lang-RECORD"></span>
+                <span class="nav-item" onclick="toPage('/shop')" id="lang-SHOP"></span>
+                <span class="nav-item" onclick="toPage('/cart')" id="lang-CART"></span>
+                <span class="nav-item" onclick="toPage('/order')" id="lang-ORDER"></span>
+            </nav>
+            <div class="header-user">
+                <span id="username"></span>
+                <span class="icon" id="setting">
+                    <img src="/static/images/setting.png" alt="setting" onclick="showOption()">
+                    <div class="options">
+                        <span class="option-title" id="lang-SIZE"></span>
+                        <input class="number-inp" type="number" min="12" max="30" id="size-option">
+                        <span class="option-title" id="lang-COLOR"></span>
+                        <input class="color-inp" type="color" id="color-option">
+                        <span class="option-title" id="lang-BTN_COLOR"></span>
+                        <input class="color-inp" type="color" id="btn-color-option">
+                        <span class="option-title" id="lang-BTN_FONT_COLOR"></span>
+                        <input class="color-inp" type="color" id="btn-font-color-option">
+                    </div>
+                </span>
+                <span class="icon" id="language">
+                    <img src="/static/images/lang.png" alt="lang" onclick="showLang()">
+                    <div class="lang">
+                        <span class="lang-item" onclick="changeLanguage('zh', orderLangObj)">中文</span>
+                        <span class="lang-item" onclick="changeLanguage('en', orderLangObj)">English</span>
+                    </div>
+                </span>
+                <span class="icon" id="logout">
+                    <img src="/static/images/logout.png" alt="logout" onclick="logout()">
+                </span>
+            </div>
+        </div>
+        <div class="login-view">
+            <span onclick="toPage('/user/login')">Login</span>
+        </div>
+        </div>
+    </header>
+    <section class="personal-info">
+        <div class="profile">
+            <img src="https://via.placeholder.com/100" alt="用户头像">
+            <h2 id="lang-USER_NAME">User Name</h2>
+            <p><span id="lang-TOTAL_POINTS">Total Points: </span><span id="total-points">0</span></p>
+        </div>
+    </section>
+
+    <section class="order-history">
+        <h2 id="lang-ORDER_RECORD">Order Record</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th id="lang-ORDER_NO">Order No.</th>
+                    <th id="lang-DATE">Date</th>
+                    <th id="lang-AMOUNT">Amount of money</th>
+                    <th id="lang-STATE">State</th>
+                </tr>
+            </thead>
+            <tbody id="order-history-body">
+                <!-- 订单历史记录将通过 JavaScript 动态生成 -->
+            </tbody>
+        </table>
+    </section>
+
+    <section class="points-record">
+        <h2 id="lang-POINTS_RECORD">Points record</h2>
+        <ul id="points-record-list">
+            <!-- 积分记录将通过 JavaScript 动态生成 -->
+        </ul>
+    </section>
+
+
+    <script src="/static/js/nav.js"></script>
+    <script>
+        let orderLangObj = {
+            'zh': {
+                'USER_NAME': '用户名',
+                'TOTAL_POINTS': '总积分:',
+                'ORDER_RECORD': '订单记录',
+                'ORDER_NO': '订单号',
+                'DATE': '日期',
+                'AMOUNT': '金额',
+                'STATE': '状态',
+                'POINTS_RECORD': '积分记录'
+            },
+            'en': {
+                'USER_NAME': 'User Name',
+                'TOTAL_POINTS': 'Total Points: ',
+                'ORDER_RECORD': 'Order Record',
+                'ORDER_NO': 'Order No.',
+                'DATE': 'Date',
+                'AMOUNT': 'Amount of money',
+                'STATE': 'State',
+                'POINTS_RECORD': 'Points record'
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // 获取并显示总积分
+            var totalPoints = localStorage.getItem('points') ? parseFloat(localStorage.getItem('points')) : 0;
+            document.getElementById('total-points').innerText = totalPoints.toFixed(2);
+
+            // 获取订单历史记录
+            var orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+            var orderHistoryBody = document.getElementById('order-history-body');
+
+            orderHistory.forEach(function (order) {
+                var orderRow = document.createElement('tr');
+                orderRow.innerHTML = `
+                        <td>${order.orderNumber}</td>
+                        <td>${order.date}</td>
+                        <td>¥${order.amount.toFixed(2)}</td>
+                        <td>${order.status}</td>
+                    `;
+                orderHistoryBody.appendChild(orderRow);
+            });
+
+            // 获取积分记录
+            var pointsRecord = JSON.parse(localStorage.getItem('pointsRecord')) || [];
+            var pointsRecordList = document.getElementById('points-record-list');
+
+            pointsRecord.forEach(function (record) {
+                var recordItem = document.createElement('li');
+                recordItem.innerHTML = `
+                        ${record.date} - ponitsget: ${record.points}
+                    `;
+                pointsRecordList.appendChild(recordItem);
+            });
+        });
+        // // 检查登录状态并更新导航栏
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     if (localStorage.getItem('loggedIn') === 'true') {
+        //         document.getElementById('loginLink').innerText = 'LOGIN OUT';
+        //         document.getElementById('loginLink').href = '#';
+        //         document.getElementById('loginLink').onclick = function () {
+        //             localStorage.removeItem('loggedIn');
+        //             window.location.href = 'HOME.html';
+        //         };
+        //     }
+        // });
+
+        langChange(orderLangObj);
+    </script>
+
+
+</body>
+
+</html>

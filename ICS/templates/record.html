@@ -12,6 +12,7 @@
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </head>
 
 <body>
@@ -21,7 +22,11 @@
     </div>
     <div class="menu">
       <nav>
+        <span class="nav-item" onclick="toPage('/home')" id="lang-HOME"></span>
         <span class="nav-item" onclick="toPage('/record')" id="lang-RECORD"></span>
+        <span class="nav-item" onclick="toPage('/shop')" id="lang-SHOP"></span>
+        <span class="nav-item" onclick="toPage('/cart')" id="lang-CART"></span>
+        <span class="nav-item" onclick="toPage('/order')" id="lang-ORDER"></span>
       </nav>
       <div class="header-user">
         <span id="username"></span>
@@ -107,9 +112,10 @@
     </div>
   </div>
 </body>
-<script src="/static/js/moment.min.js"></script>
 <script src="/static/js/nav.js"></script>
 <script src="/static/js/record.js"></script>
+<script src="/static/js/moment.min.js"></script>
+
 <script>
   let recordLangObj = {
     "zh": {

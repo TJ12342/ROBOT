@@ -1,6 +1,10 @@
 let navLangObj = {
   'zh': {
     RECORD: '记录',
+    HOME: '主页',
+    SHOP: '商店',
+    CART: '购物车',
+    ORDER: '订单',
     SIZE: '字体大小',
     COLOR: '字体颜色',
     BTN_COLOR: '按钮颜色',
@@ -8,6 +12,10 @@ let navLangObj = {
   },
   'en': {
     RECORD: 'Record',
+    HOME: 'home',
+    SHOP: 'shop',
+    CART: 'cart',
+    ORDER: 'order',
     SIZE: 'Font Size',
     COLOR: 'Font Color',
     BTN_COLOR: 'Button Color',

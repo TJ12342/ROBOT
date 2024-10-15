@@ -1,0 +1,307 @@
+
+
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+.hero button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.hero button:hover {
+    background-color: #555;
+}
+
+.carousel {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.carousel-item {
+    flex: 0 0 auto;
+    padding: 0 20px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.carousel-item h3 {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 10;
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.toggle-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1001;
+}
+
+/* 侧边栏样式 */
+
+.slide-out-sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    transition: right 0.3s;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.slide-out-sidebar.active {
+    right: 0;
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-header img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.sidebar-header h2 {
+    margin: 10px 0 0 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.sidebar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-actions button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.login-btn {
+    background-color: #ff6347;
+    color: white;
+}
+
+.register-btn {
+    background-color: #ffa07a;
+    color: white;
+}
+
+.open-store-btn {
+    background-color: #f0f0f0;
+    color: #666;
+}
+
+.register-btn:hover {
+    background-color: #e0895e;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.menu-item {
+    flex-basis: calc(33% - 20px);
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fff;
+}
+
+.menu-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.quantity-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.quantity-controls button {
+    margin: 0 10px;
+    padding: 5px 10px;
+}
+
+.order-summary {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%; /* 或者根据需要设置固定宽度 */
+    max-width: 600px; /* 设置一个最大宽度，确保在大屏幕上不会过宽 */
+    background-color: #ffffff;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 10px;
+    text-align: center; /* 居中文本内容 */
+}
+
+.order-summary p {
+    margin: 10px 0;
+}
+
+.order-summary button {
+    background-color: #28a745;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.order-summary button:hover {
+    background-color: #218838;
+}
+
+/* 个人 */
+.personal-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.profile img {
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile h2 {
+    margin: 0;
+}
+
+.order-history, .points-record {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.order-history h2, .points-record h2 {
+    margin-top: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

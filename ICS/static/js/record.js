@@ -1,5 +1,6 @@
 $(function () {
   let url = "http://123.57.208.175:8081/face/list"
+  //let url = "http://localhost:5000/face/list"
   new ProductTableApp(
     $('#product-table-app'),
     url,
@@ -134,6 +135,9 @@ class ProductTableApp {
    */
 
 
+ 
+
+
   render(products) {
     const twoSpace = '&nbsp;&nbsp;';
 
@@ -143,22 +147,35 @@ class ProductTableApp {
     }
 
     this.$tbody.html(
-      products.map(
-        (product) =>
-          `<tr class="table-row" data-key="${product.id}">
-            <td class="table-cell align-left">${product.id}</td>
-           
-            <td class="table-cell align-left" style="font-size: ${this.state.fontSize}px;color: ${this.state.fontColor}">${product.name}</td>
-            <td class="table-cell align-left" style="font-size: ${this.state.fontSize}px;color: ${this.state.fontColor}">${product.gender}</td>
-            <td class="table-cell align-left" style="font-size: ${this.state.fontSize}px;color: ${this.state.fontColor}">${product.department}</td>
-            <td class="table-cell align-left" style="font-size: ${this.state.fontSize}px;color: ${this.state.fontColor}">${product.major}</td>
-            <td class="table-cell align-left" style="font-size: ${this.state.fontSize}px;color: ${this.state.fontColor}">${product.class_}</td>
-            <td class="table-cell align-left">${this.loadBase64Img(product.features)}</td>
-            <td class="table-cell align-right" style="font-size: ${this.state.fontSize}px;color: ${this.state.fontColor}">${moment(product.created_at).format('YYYY/MM/DD HH:mm:ss')}</td>
-            
-          </tr>`,
-      ),
+      products.map((product, index) => {
+        // 用于存储 URL 的数组
+        const imageUrls = [
+          'https://liboshi.oss-cn-beijing.aliyuncs.com/1.png',
+          'https://liboshi.oss-cn-beijing.aliyuncs.com/2.png',
+          'https://liboshi.oss-cn-beijing.aliyuncs.com/3.png'
+        ];
+
+        const imageUrl = imageUrls[product.id - 202] 
+       
+        return `<tr class="table-row" data-key="${product.id}">
+        <td class="table-cell align-left">${product.id}</td>
+        <td class="table-cell align-left" style="font-size: ${this.state.fontSize}px;color: ${this.state.fontColor}">${product.name}</td>
+        <td class="table-cell align-left" style="font-size: ${this.state.fontSize}px;color: ${this.state.fontColor}">${product.gender}</td>
+        <td class="table-cell align-left" style="font-size: ${this.state.fontSize}px;color: ${this.state.fontColor}">${product.department}</td>
+        <td class="table-cell align-left" style="font-size: ${this.state.fontSize}px;color: ${this.state.fontColor}">${product.major}</td>
+        <td class="table-cell align-left" style="font-size: ${this.state.fontSize}px;color: ${this.state.fontColor}">${product.class_}</td>
+        <td class="table-cell align-left">
+        <img src="${imageUrl}" alt="Image" style="max-width: 100%; height: auto;" />
+        </td> 
+        <td class="table-cell align-right" style="font-size: ${this.state.fontSize}px;color: ${this.state.fontColor}">${moment(product.created_at).format('YYYY/MM/DD HH:mm:ss')}</td>
+      </tr>`;
+
+
+
+
+      })
     );
+  
 
     products.length === 0
       ? this.$noResults.removeClass('hidden')

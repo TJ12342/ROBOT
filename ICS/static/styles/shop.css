@@ -1,0 +1,99 @@
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.menu-item {
+    flex-basis: calc(33% - 20px);
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fff;
+}
+
+.menu-item img {
+    width: 100%;
+  
+    border-radius: 10px;
+}
+
+.quantity-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.quantity-controls button {
+    margin: 0 10px;
+    padding: 5px 10px;
+}
+
+.order-summary {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%; /* 或者根据需要设置固定宽度 */
+    max-width: 550px; /* 设置一个最大宽度，确保在大屏幕上不会过宽 */
+    background-color: #ffffff;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    padding: 5px 5px;
+    text-align: center; /* 居中文本内容 */
+}
+
+.order-summary p {
+    margin: 10px 0;
+}
+
+.order-summary button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.order-summary button:hover {
+    background-color: #218838;
+}
+.main-footer{
+    background: #151515;
+    color: white;
+    padding: 30px 20px;
+  }
+  .footer__title{
+    border-bottom: 1px dotted #555;
+    padding-bottom: 20px;
+  }
+  .footer__txt {
+    color: #555;
+  }
+  .footer__link{
+    color: #555;
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+  }
+  
+  .footer__input{
+    background: #151515;
+    width: 100%;
+    display: block;
+    padding: 20px;
+    border: 1px solid #555;
+  }
+  .copy {
+    color: #555;
+  }
+  img {
+    transition: transform 0.3s ease; /* 添加过渡动画 */
+  }
+  img:hover {
+    transform: scale(1.2); /* 鼠标悬停时放大图片 */
+  }

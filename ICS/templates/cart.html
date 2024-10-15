@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="10">
+    <title>Cart</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="/static/styles/nav.css">
+    <link rel="stylesheet" href="/static/styles/home.css">
+    <style>
+        .container {
+            padding: 20px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .order-summary {
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .order-summary p {
+            margin: 10px 0;
+        }
+
+        .order-summary button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .order-summary button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="/static/images/logo.jpeg" alt="logo">
+        </div>
+        <div class="menu">
+            <nav>
+                <span class="nav-item" onclick="toPage('/home')" id="lang-HOME"></span>
+                <span class="nav-item" onclick="toPage('/record')" id="lang-RECORD"></span>
+                <span class="nav-item" onclick="toPage('/shop')" id="lang-SHOP"></span>
+                <span class="nav-item" onclick="toPage('/cart')" id="lang-CART"></span>
+                <span class="nav-item" onclick="toPage('/order')" id="lang-ORDER"></span>
+            </nav>
+            <div class="header-user">
+                <span id="username"></span>
+                <span class="icon" id="setting">
+                    <img src="/static/images/setting.png" alt="setting" onclick="showOption()">
+                    <div class="options">
+                        <span class="option-title" id="lang-SIZE"></span>
+                        <input class="number-inp" type="number" min="12" max="30" id="size-option">
+                        <span class="option-title" id="lang-COLOR"></span>
+                        <input class="color-inp" type="color" id="color-option">
+                        <span class="option-title" id="lang-BTN_COLOR"></span>
+                        <input class="color-inp" type="color" id="btn-color-option">
+                        <span class="option-title" id="lang-BTN_FONT_COLOR"></span>
+                        <input class="color-inp" type="color" id="btn-font-color-option">
+                    </div>
+                </span>
+                <span class="icon" id="language">
+                    <img src="/static/images/lang.png" alt="lang" onclick="showLang()">
+                    <div class="lang">
+                        <span class="lang-item" onclick="changeLanguage('zh', cartLangObj)">中文</span>
+                        <span class="lang-item" onclick="changeLanguage('en', cartLangObj)">English</span>
+                    </div>
+                </span>
+                <span class="icon" id="logout">
+                    <img src="/static/images/logout.png" alt="logout" onclick="logout()">
+                </span>
+            </div>
+        </div>
+        <div class="login-view">
+            <span onclick="toPage('/user/login')">Login</span>
+        </div>
+        </div>
+    </header>
+
+    <div class="container" id="order-details">
+        <!-- 订单详情将由JavaScript插入 -->
+    </div>
+
+    <div class="order-summary" id="order-summary">
+        <!-- 订单总结将由JavaScript插入 -->
+    </div>
+    <script src="/static/js/nav.js"></script>
+    <script>
+        let cartLangObj = {
+            'zh': {
+                'TOTAL': '总价: ',
+                'DISCOUNT': '折扣: ',
+                'PAYFOR': '应付: ',
+                'ORDER_BUTTON': '确认支付'
+            },
+            'en': {
+                'TOTAL': 'Total: ',
+                'DISCOUNT': 'Discount: ',
+                'PAYFOR': 'Pay for: ',
+                'ORDER_BUTTON': 'Confirm Payment'
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var orderData = JSON.parse(localStorage.getItem('orderData'));
+            var orderDetails = document.getElementById('order-details');
+            var total = 0;
+
+            orderData.forEach(function (item) {
+                var itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                var orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+                orderItem.innerHTML = `
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>¥${itemTotal.toFixed(2)}</span>
+                `;
+                orderDetails.appendChild(orderItem);
+            });
+
+            var discount = total >= 100 ? Math.floor(total / 100) * 10 : 0;
+            var finalTotal = total - discount;
+
+            var orderSummary = document.getElementById('order-summary');
+            orderSummary.innerHTML = `
+                <p><span id="lang-TOTAL">Total:</span> ¥${total.toFixed(2)}</p>
+                <p><span id="lang-DISCOUNT">Discount:</span> ¥${discount.toFixed(2)}</p>
+                <p><span id="lang-PAYFOR">Pay for:</span> ¥${finalTotal.toFixed(2)}</p>
+                <button id="lang-ORDER_BUTTON" onclick="confirmPayment(${finalTotal})">Confirm Payment</button>
+            `;
+        });
+
+        function confirmPayment(finalTotal) {
+            alert('Payment successfully completed！');
+
+            // 获取当前的积分
+            var points = localStorage.getItem('points') ? parseFloat(localStorage.getItem('points')) : 0;
+            points += finalTotal;
+            localStorage.setItem('points', points.toFixed(2));
+
+            // 更新积分记录
+            var pointsRecord = JSON.parse(localStorage.getItem('pointsRecord')) || [];
+            pointsRecord.push({ date: new Date().toLocaleString(), points: finalTotal.toFixed(2) });
+            localStorage.setItem('pointsRecord', JSON.stringify(pointsRecord));
+
+            // 更新订单历史
+            var orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+            orderHistory.push({ orderNumber: Date.now(), date: new Date().toLocaleString(), amount: finalTotal, status: 'You have paid' });
+            localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+
+            // 清空订单数据
+            localStorage.removeItem('orderData');
+
+            // 跳转到个人中心页面
+            window.location.href = '/order';
+        }
+
+        langChange(cartLangObj);
+    </script>
+</body>
+
+
+</html>
